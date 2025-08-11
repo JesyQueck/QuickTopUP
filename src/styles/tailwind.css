@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background Colors */
+    --color-background: #FAFAFA; /* gray-50 */
+    --color-foreground: #212121; /* gray-800 */
+    --color-card: #FFFFFF; /* white */
+    --color-card-foreground: #212121; /* gray-800 */
+    --color-popover: #FFFFFF; /* white */
+    --color-popover-foreground: #212121; /* gray-800 */
+    --color-muted: #F5F5F5; /* gray-100 */
+    --color-muted-foreground: #757575; /* gray-500 */
+    
+    /* Primary Colors - Nigerian Green */
+    --color-primary: #1B5E20; /* green-800 */
+    --color-primary-foreground: #FFFFFF; /* white */
+    
+    /* Secondary Colors - Nigerian Gold */
+    --color-secondary: #FFC107; /* amber-400 */
+    --color-secondary-foreground: #212121; /* gray-800 */
+    
+    /* Accent Colors */
+    --color-accent: #F5F5F5; /* gray-100 */
+    --color-accent-foreground: #212121; /* gray-800 */
+    
+    /* State Colors */
+    --color-destructive: #D32F2F; /* red-700 */
+    --color-destructive-foreground: #FFFFFF; /* white */
+    --color-error: #D32F2F; /* red-700 */
+    --color-error-foreground: #FFFFFF; /* white */
+    --color-success: #388E3C; /* green-600 */
+    --color-success-foreground: #FFFFFF; /* white */
+    --color-warning: #F57C00; /* orange-600 */
+    --color-warning-foreground: #FFFFFF; /* white */
+    
+    /* Border and Input */
+    --color-border: #E0E0E0; /* gray-300 */
+    --color-input: #FFFFFF; /* white */
+    --color-ring: #1B5E20; /* green-800 */
+    
+    /* Text Colors */
+    --color-text-primary: #212121; /* gray-800 */
+    --color-text-secondary: #757575; /* gray-500 */
+    --color-divider: #E0E0E0; /* gray-300 */
+    
+    /* Surface */
+    --color-surface: #FFFFFF; /* white */
+    
+    /* Radius */
+    --radius: 0.75rem; /* 12px */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+  }
+  
+  body, p, span, div {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+  }
+  
+  .font-mono {
+    font-family: 'SF Mono', 'Roboto Mono', monospace;
+    font-weight: 500;
+  }
+  
+  /* Mobile-optimized touch targets */
+  button, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Safe area handling for mobile */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+@layer components {
+  /* Mobile-first card component */
+  .mobile-card {
+    @apply bg-card text-card-foreground rounded-xl shadow-sm border border-border;
+  }
+  
+  /* Touch-optimized button base */
+  .touch-button {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg transition-all duration-150;
+  }
+  
+  /* Nigerian fintech specific gradients */
+  .wallet-gradient {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #2E7D32 100%);
+  }
+  
+  /* Mobile navigation styles */
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-card border-t border-border safe-area-bottom;
+    z-index: 50;
+  }
+  
+  /* Transaction status indicators */
+  .status-success {
+    @apply bg-success text-success-foreground;
+  }
+  
+  .status-pending {
+    @apply bg-warning text-warning-foreground;
+  }
+  
+  .status-failed {
+    @apply bg-destructive text-destructive-foreground;
+  }
+}
+
+@layer utilities {
+  /* Mobile-specific utilities */
+  .thumb-zone {
+    @apply pb-20; /* Account for bottom navigation */
+  }
+  
+  .one-handed {
+    @apply max-w-sm mx-auto; /* Optimize for one-handed use */
+  }
+  
+  /* Animation utilities for mobile */
+  .animate-slide-up {
+    animation: slideUp 0.25s ease-out;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .border {
+      @apply border-2;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-slide-up,
+    .animate-fade-in {
+      animation: none;
+    }
+  }
+}

@@ -4,13 +4,7 @@ import { useRouter } from 'expo-router';
 
 type Service = {
   name: string;
-  route:
-    | '/buy-airtime'
-    | '/buy-data'
-    | '/pay-electricity'
-    | '/pay-cable'
-    | '/wallet'
-    | '/(tabs)/history';
+  route: '/buy-airtime' | '/buy-data' | '/wallet' | '/(tabs)/history';
 };
 
 export default function Dashboard() {
@@ -22,8 +16,6 @@ export default function Dashboard() {
   const services: Service[] = [
     { name: 'Buy Airtime', route: '/buy-airtime' },
     { name: 'Buy Data', route: '/buy-data' },
-    { name: 'Electricity Bills', route: '/pay-electricity' },
-    { name: 'Cable Subscription', route: '/pay-cable' },
     { name: 'Fund Wallet', route: '/wallet' },
     { name: 'Transaction History', route: '/(tabs)/history' },
   ];
